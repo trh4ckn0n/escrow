@@ -3,8 +3,9 @@ from bs4 import BeautifulSoup
 
 def get_suspected_scammers():
     url = "https://info.signal-arnaques.com/tous-les-articles"  # Nouvelle URL
-    headers = {"User-Agent": "Mozilla/5.0"}
-    
+    headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+}    
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # Si le status code n'est pas 200, une exception sera levée
