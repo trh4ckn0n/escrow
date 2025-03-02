@@ -17,7 +17,7 @@ def get_suspected_scammers():
         name = article.text.strip()
         escrocs.append(name)
 
-    return escrocs[:15]  # On récupère les 10 premiers titres d'articles
+    return escrocs[:10]  # On récupère les 10 premiers titres d'articles
 
 # Test de la fonction
 print(get_suspected_scammers())
