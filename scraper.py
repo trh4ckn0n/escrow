@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_suspected_scammers():
-    url = "https://www.signal-arnaques.com/"  # Exemple de site qui liste les arnaques
+    url = "https://info.signal-arnaques.com/tous-les-articles"  # Nouvelle URL
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(url, headers=headers)
 
@@ -12,9 +12,12 @@ def get_suspected_scammers():
     soup = BeautifulSoup(response.text, "html.parser")
     escrocs = []
 
-    # Supposons que les noms d'escrocs sont dans des balises <h3>
-    for scammer in soup.find_all("h3"):
-        name = scammer.text.strip()
+    # On suppose que les noms d'escrocs sont dans des balises <h2> ou similaires
+    for article in soup.find_all("h2"):  # Adapté à la structure de la page
+        name = article.text.strip()
         escrocs.append(name)
 
-    return escrocs[:10]  # On récupère les 10 premiers noms
+    return escrocs[:15]  # On récupère les 10 premiers titres d'articles
+
+# Test de la fonction
+print(get_suspected_scammers())
