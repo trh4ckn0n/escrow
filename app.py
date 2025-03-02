@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from database import db, Signalement
+from scraper import get_suspected_scammers
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -9,7 +11,8 @@ db.init_app(app)
 @app.route('/')
 def index():
     signalements = Signalement.query.all()
-    return render_template('index.html', signalements=signalements)
+    escrocs_web = get_suspected_scammers()  # Récupération des arnaqueurs du web
+    return render_template('index.html', signalements=signalements, escrocs_web=escrocs_web)
 
 @app.route('/signaler', methods=['GET', 'POST'])
 def signaler():
