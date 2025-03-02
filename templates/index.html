@@ -2,14 +2,23 @@
 <html>
 <head>
     <title>Arnaque Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Signalements d’arnaques</h1>
     <a href="{{ url_for('signaler') }}">Signaler une arnaque</a>
+
+    <h2>Escrocs signalés par les utilisateurs</h2>
     <ul>
         {% for signalement in signalements %}
             <li><strong>{{ signalement.nom }}</strong> - {{ signalement.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Escrocs trouvés sur le web</h2>
+    <ul>
+        {% for escroc in escrocs_web %}
+            <li>{{ escroc }}</li>
         {% endfor %}
     </ul>
 </body>
