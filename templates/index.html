@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arnaque Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Signalements d’arnaques</h1>
+    <a href="{{ url_for('signaler') }}">Signaler une arnaque</a>
+    <ul>
+        {% for signalement in signalements %}
+            <li><strong>{{ signalement.nom }}</strong> - {{ signalement.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
